@@ -143,13 +143,26 @@ public class UpdateIdentityPoolRequestMarshaller
                 jsonGenerator.writeEndArray();
             }
 
+            java.util.List<String> samlProviderARNsList = updateIdentityPoolRequest
+                    .getSamlProviderARNs();
+            if (samlProviderARNsList != null) {
+                jsonGenerator.writeFieldName("SamlProviderARNs");
+                jsonGenerator.writeStartArray();
+                for (String samlProviderARNsListValue : samlProviderARNsList) {
+                    if (samlProviderARNsListValue != null) {
+                        jsonGenerator.writeValue(samlProviderARNsListValue);
+                    }
+                }
+                jsonGenerator.writeEndArray();
+            }
+
             jsonGenerator.writeEndObject();
 
             byte[] content = jsonGenerator.getBytes();
             request.setContent(new ByteArrayInputStream(content));
             request.addHeader("Content-Length",
                     Integer.toString(content.length));
-            request.addHeader("Content-Type", jsonGenerator.getContentType());
+            request.addHeader("Content-Type", protocolFactory.getContentType());
         } catch (Throwable t) {
             throw new AmazonClientException(
                     "Unable to marshall request to JSON: " + t.getMessage(), t);

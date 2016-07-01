@@ -78,6 +78,26 @@ import com.amazonaws.services.applicationautoscaling.model.transform.*;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * Application Auto Scaling is available in the following regions:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>us-east-1</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>us-west-2</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>eu-west-1</code>
+ * </p>
+ * </li>
+ * </ul>
  */
 @ThreadSafe
 public class AWSApplicationAutoScalingClient extends AmazonWebServiceClient
@@ -90,9 +110,6 @@ public class AWSApplicationAutoScalingClient extends AmazonWebServiceClient
 
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "application-autoscaling";
-
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "autoscaling";
 
     /**
      * Client configuration factory providing ClientConfigurations tailored to
@@ -301,7 +318,7 @@ public class AWSApplicationAutoScalingClient extends AmazonWebServiceClient
 
     private void init() {
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         // calling this.setEndPoint(...) will also modify the signer accordingly
         setEndpoint("https://autoscaling.us-east-1.amazonaws.com");
         HandlerChainFactory chainFactory = new HandlerChainFactory();

@@ -25,6 +25,7 @@ import com.amazonaws.util.ValidationUtils;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -60,7 +61,14 @@ class RefreshableTask<T> {
     /**
      * Single threaded executor to asynchronous refresh the value.
      */
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
+	@Override
+	public Thread newThread(Runnable runnable) {
+	    Thread thread = Executors.defaultThreadFactory().newThread(runnable);
+	    thread.setDaemon(true);
+	    return thread;
+	}
+    });
 
     /**
      * Used to ensure only one thread at any given time refreshes the value.

@@ -112,14 +112,14 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
     }
 
     /**
-     * Returns super.available() if the value is not zero or else always returns
-     * 1.  This is necessary to get around a GZIPInputStream bug which would
-     * mis-behave in some edge cases upon zero returned from available(),
+     * Returns the value of super.available() if the result is nonzero, or 1
+     * otherwise.
+     * <p>
+     * This is necessary to work around a known bug in
+     * GZIPInputStream.available(), which returns zero in some edge cases,
      * causing file truncation.
      * <p>
-     * http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7036144
-     * <p>
-     * Reference TT: 0034867351
+     * Ref: http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7036144
      */
     @Override
     public int available() throws IOException {
@@ -171,8 +171,8 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
     /**
      * {@inheritDoc}
      *
-     * Delegate to {@link S3ObjectInputStream#abort()} if there is data remaining in the stream. If the stream has been
-     * read completely, with no data remaining, safely close the stream.
+     * Delegates to {@link S3ObjectInputStream#abort()} if there is any data
+     * remaining in the stream. Otherwise, it safely closes the stream.
      *
      * @see {@link S3ObjectInputStream#abort()}
      */

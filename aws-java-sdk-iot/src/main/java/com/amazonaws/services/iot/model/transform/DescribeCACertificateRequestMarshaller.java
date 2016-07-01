@@ -49,8 +49,6 @@ public class DescribeCACertificateRequestMarshaller
         implements
         Marshaller<Request<DescribeCACertificateRequest>, DescribeCACertificateRequest> {
 
-    private static final String DEFAULT_CONTENT_TYPE = "application/x-amz-json-1.1";
-
     private final SdkJsonProtocolFactory protocolFactory;
 
     public DescribeCACertificateRequestMarshaller(
@@ -71,11 +69,11 @@ public class DescribeCACertificateRequestMarshaller
 
         request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/cacertificate/{certificateId}";
+        String uriResourcePath = "/cacertificate/{caCertificateId}";
 
         uriResourcePath = uriResourcePath
                 .replace(
-                        "{certificateId}",
+                        "{caCertificateId}",
                         (describeCACertificateRequest.getCertificateId() != null) ? SdkHttpUtils.urlEncode(
                                 StringUtils
                                         .fromString(describeCACertificateRequest
@@ -85,7 +83,7 @@ public class DescribeCACertificateRequestMarshaller
 
         request.setContent(new ByteArrayInputStream(new byte[0]));
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", DEFAULT_CONTENT_TYPE);
+            request.addHeader("Content-Type", protocolFactory.getContentType());
         }
 
         return request;

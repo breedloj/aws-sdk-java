@@ -74,9 +74,6 @@ public class AmazonCloudSearchDomainClient extends AmazonWebServiceClient
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "cloudsearch";
 
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "cloudsearchdomain";
-
     /**
      * Client configuration factory providing ClientConfigurations tailored to
      * this client
@@ -87,6 +84,7 @@ public class AmazonCloudSearchDomainClient extends AmazonWebServiceClient
             new JsonClientMetadata()
                     .withProtocolVersion("1.1")
                     .withSupportsCbor(false)
+                    .withContentTypeOverride("")
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
                                     .withErrorCode("SearchException")
@@ -257,7 +255,7 @@ public class AmazonCloudSearchDomainClient extends AmazonWebServiceClient
 
     private void init() {
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s
                 .addAll(chainFactory

@@ -47,7 +47,7 @@ public class RequestSpotFleetRequestMarshaller implements
         Request<RequestSpotFleetRequest> request = new DefaultRequest<RequestSpotFleetRequest>(
                 requestSpotFleetRequest, "AmazonEC2");
         request.addParameter("Action", "RequestSpotFleet");
-        request.addParameter("Version", "2015-10-01");
+        request.addParameter("Version", "2016-04-01");
         request.setHttpMethod(HttpMethodName.POST);
 
         SpotFleetRequestConfigData spotFleetRequestConfig = requestSpotFleetRequest
@@ -618,6 +618,18 @@ public class RequestSpotFleetRequestMarshaller implements
                         "SpotFleetRequestConfig.AllocationStrategy",
                         StringUtils.fromString(spotFleetRequestConfig
                                 .getAllocationStrategy()));
+            }
+
+            if (spotFleetRequestConfig.getFulfilledCapacity() != null) {
+                request.addParameter(
+                        "SpotFleetRequestConfig.FulfilledCapacity", StringUtils
+                                .fromDouble(spotFleetRequestConfig
+                                        .getFulfilledCapacity()));
+            }
+
+            if (spotFleetRequestConfig.getType() != null) {
+                request.addParameter("SpotFleetRequestConfig.Type", StringUtils
+                        .fromString(spotFleetRequestConfig.getType()));
             }
         }
 

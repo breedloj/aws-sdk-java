@@ -83,9 +83,6 @@ public class AWSCloudTrailClient extends AmazonWebServiceClient implements
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "cloudtrail";
 
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "cloudtrail";
-
     /**
      * Client configuration factory providing ClientConfigurations tailored to
      * this client
@@ -179,6 +176,11 @@ public class AWSCloudTrailClient extends AmazonWebServiceClient implements
                                     .withErrorCode("InvalidHomeRegionException")
                                     .withModeledClass(
                                             com.amazonaws.services.cloudtrail.model.InvalidHomeRegionException.class))
+                    .addErrorMetadata(
+                            new JsonErrorShapeMetadata()
+                                    .withErrorCode("KmsException")
+                                    .withModeledClass(
+                                            com.amazonaws.services.cloudtrail.model.KmsException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
                                     .withErrorCode(
@@ -426,7 +428,7 @@ public class AWSCloudTrailClient extends AmazonWebServiceClient implements
 
     private void init() {
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         // calling this.setEndPoint(...) will also modify the signer accordingly
         setEndpoint("cloudtrail.us-east-1.amazonaws.com");
         HandlerChainFactory chainFactory = new HandlerChainFactory();
@@ -624,7 +626,10 @@ public class AWSCloudTrailClient extends AmazonWebServiceClient implements
      *         This exception is thrown when the KMS key does not exist, or when
      *         the S3 bucket and the KMS key are not in the same region.
      * @throws KmsKeyDisabledException
-     *         This exception is thrown when the KMS key is disabled.
+     *         This exception is deprecated.
+     * @throws KmsException
+     *         This exception is thrown when there is an issue with the
+     *         specified KMS key and the trail can’t be updated.
      * @throws InvalidCloudWatchLogsLogGroupArnException
      *         This exception is thrown when the provided CloudWatch log group
      *         is not valid.
@@ -1529,7 +1534,10 @@ public class AWSCloudTrailClient extends AmazonWebServiceClient implements
      *         This exception is thrown when the KMS key does not exist, or when
      *         the S3 bucket and the KMS key are not in the same region.
      * @throws KmsKeyDisabledException
-     *         This exception is thrown when the KMS key is disabled.
+     *         This exception is deprecated.
+     * @throws KmsException
+     *         This exception is thrown when there is an issue with the
+     *         specified KMS key and the trail can’t be updated.
      * @throws InvalidCloudWatchLogsLogGroupArnException
      *         This exception is thrown when the provided CloudWatch log group
      *         is not valid.

@@ -26,6 +26,8 @@ import com.amazonaws.annotation.ThreadSafe;
  * <p>
  * <fullname>Amazon Relational Database Service</fullname>
  * <p>
+ * </p>
+ * <p>
  * Amazon Relational Database Service (Amazon RDS) is a web service that makes
  * it easier to set up, operate, and scale a relational database in the cloud.
  * It provides cost-efficient, resizeable capacity for an industry-standard
@@ -3266,6 +3268,41 @@ public class AmazonRDSAsyncClient extends AmazonRDSClient implements
 
                         try {
                             result = promoteReadReplica(request);
+                        } catch (Exception ex) {
+                            if (asyncHandler != null) {
+                                asyncHandler.onError(ex);
+                            }
+                            throw ex;
+                        }
+
+                        if (asyncHandler != null) {
+                            asyncHandler.onSuccess(request, result);
+                        }
+                        return result;
+                    }
+                });
+    }
+
+    @Override
+    public java.util.concurrent.Future<DBCluster> promoteReadReplicaDBClusterAsync(
+            PromoteReadReplicaDBClusterRequest request) {
+
+        return promoteReadReplicaDBClusterAsync(request, null);
+    }
+
+    @Override
+    public java.util.concurrent.Future<DBCluster> promoteReadReplicaDBClusterAsync(
+            final PromoteReadReplicaDBClusterRequest request,
+            final com.amazonaws.handlers.AsyncHandler<PromoteReadReplicaDBClusterRequest, DBCluster> asyncHandler) {
+
+        return executorService
+                .submit(new java.util.concurrent.Callable<DBCluster>() {
+                    @Override
+                    public DBCluster call() throws Exception {
+                        DBCluster result;
+
+                        try {
+                            result = promoteReadReplicaDBCluster(request);
                         } catch (Exception ex) {
                             if (asyncHandler != null) {
                                 asyncHandler.onError(ex);

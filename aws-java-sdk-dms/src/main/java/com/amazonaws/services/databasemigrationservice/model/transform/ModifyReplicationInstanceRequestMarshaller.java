@@ -91,6 +91,19 @@ public class ModifyReplicationInstanceRequestMarshaller
                                 modifyReplicationInstanceRequest
                                         .getReplicationInstanceClass());
             }
+
+            java.util.List<String> vpcSecurityGroupIdsList = modifyReplicationInstanceRequest
+                    .getVpcSecurityGroupIds();
+            if (vpcSecurityGroupIdsList != null) {
+                jsonGenerator.writeFieldName("VpcSecurityGroupIds");
+                jsonGenerator.writeStartArray();
+                for (String vpcSecurityGroupIdsListValue : vpcSecurityGroupIdsList) {
+                    if (vpcSecurityGroupIdsListValue != null) {
+                        jsonGenerator.writeValue(vpcSecurityGroupIdsListValue);
+                    }
+                }
+                jsonGenerator.writeEndArray();
+            }
             if (modifyReplicationInstanceRequest
                     .getPreferredMaintenanceWindow() != null) {
                 jsonGenerator.writeFieldName("PreferredMaintenanceWindow")
@@ -128,7 +141,7 @@ public class ModifyReplicationInstanceRequestMarshaller
             request.setContent(new ByteArrayInputStream(content));
             request.addHeader("Content-Length",
                     Integer.toString(content.length));
-            request.addHeader("Content-Type", jsonGenerator.getContentType());
+            request.addHeader("Content-Type", protocolFactory.getContentType());
         } catch (Throwable t) {
             throw new AmazonClientException(
                     "Unable to marshall request to JSON: " + t.getMessage(), t);

@@ -88,6 +88,19 @@ public class CreateReplicationInstanceRequestMarshaller
                                 createReplicationInstanceRequest
                                         .getReplicationInstanceClass());
             }
+
+            java.util.List<String> vpcSecurityGroupIdsList = createReplicationInstanceRequest
+                    .getVpcSecurityGroupIds();
+            if (vpcSecurityGroupIdsList != null) {
+                jsonGenerator.writeFieldName("VpcSecurityGroupIds");
+                jsonGenerator.writeStartArray();
+                for (String vpcSecurityGroupIdsListValue : vpcSecurityGroupIdsList) {
+                    if (vpcSecurityGroupIdsListValue != null) {
+                        jsonGenerator.writeValue(vpcSecurityGroupIdsListValue);
+                    }
+                }
+                jsonGenerator.writeEndArray();
+            }
             if (createReplicationInstanceRequest.getAvailabilityZone() != null) {
                 jsonGenerator.writeFieldName("AvailabilityZone").writeValue(
                         createReplicationInstanceRequest.getAvailabilityZone());
@@ -148,7 +161,7 @@ public class CreateReplicationInstanceRequestMarshaller
             request.setContent(new ByteArrayInputStream(content));
             request.addHeader("Content-Length",
                     Integer.toString(content.length));
-            request.addHeader("Content-Type", jsonGenerator.getContentType());
+            request.addHeader("Content-Type", protocolFactory.getContentType());
         } catch (Throwable t) {
             throw new AmazonClientException(
                     "Unable to marshall request to JSON: " + t.getMessage(), t);

@@ -1463,6 +1463,12 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * customer master key (CMK); however, you can specify a non-default CMK
      * with the <code>KmsKeyId</code> parameter.
      * </p>
+     * <note>
+     * <p>
+     * To copy an encrypted snapshot that has been shared from another account,
+     * you must have permissions for the CMK used to encrypt the snapshot.
+     * </p>
+     * </note>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html"
@@ -1495,6 +1501,12 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * customer master key (CMK); however, you can specify a non-default CMK
      * with the <code>KmsKeyId</code> parameter.
      * </p>
+     * <note>
+     * <p>
+     * To copy an encrypted snapshot that has been shared from another account,
+     * you must have permissions for the CMK used to encrypt the snapshot.
+     * </p>
+     * </note>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html"
@@ -5391,6 +5403,70 @@ public interface AmazonEC2Async extends AmazonEC2 {
 
     /**
      * <p>
+     * Describes the ID format settings for resources for the specified IAM
+     * user, IAM role, or root user. For example, you can view the resource
+     * types that are enabled for longer IDs. This request only returns
+     * information about resource types whose ID formats can be modified; it
+     * does not return information about other resource types. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * The following resource types support longer IDs: <code>instance</code> |
+     * <code>reservation</code> | <code>snapshot</code> | <code>volume</code>.
+     * </p>
+     * <p>
+     * These settings apply to the principal specified in the request. They do
+     * not apply to the principal that makes the request.
+     * </p>
+     * 
+     * @param describeIdentityIdFormatRequest
+     *        Contains the parameters for DescribeIdentityIdFormat.
+     * @return A Java Future containing the result of the
+     *         DescribeIdentityIdFormat operation returned by the service.
+     * @sample AmazonEC2Async.DescribeIdentityIdFormat
+     */
+    java.util.concurrent.Future<DescribeIdentityIdFormatResult> describeIdentityIdFormatAsync(
+            DescribeIdentityIdFormatRequest describeIdentityIdFormatRequest);
+
+    /**
+     * <p>
+     * Describes the ID format settings for resources for the specified IAM
+     * user, IAM role, or root user. For example, you can view the resource
+     * types that are enabled for longer IDs. This request only returns
+     * information about resource types whose ID formats can be modified; it
+     * does not return information about other resource types. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * The following resource types support longer IDs: <code>instance</code> |
+     * <code>reservation</code> | <code>snapshot</code> | <code>volume</code>.
+     * </p>
+     * <p>
+     * These settings apply to the principal specified in the request. They do
+     * not apply to the principal that makes the request.
+     * </p>
+     * 
+     * @param describeIdentityIdFormatRequest
+     *        Contains the parameters for DescribeIdentityIdFormat.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the
+     *        request. Users can provide an implementation of the callback
+     *        methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the
+     *         DescribeIdentityIdFormat operation returned by the service.
+     * @sample AmazonEC2AsyncHandler.DescribeIdentityIdFormat
+     */
+    java.util.concurrent.Future<DescribeIdentityIdFormatResult> describeIdentityIdFormatAsync(
+            DescribeIdentityIdFormatRequest describeIdentityIdFormatRequest,
+            com.amazonaws.handlers.AsyncHandler<DescribeIdentityIdFormatRequest, DescribeIdentityIdFormatResult> asyncHandler);
+
+    /**
+     * <p>
      * Describes the specified attribute of the specified AMI. You can specify
      * only one attribute at a time.
      * </p>
@@ -5792,6 +5868,13 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * Recently terminated instances might appear in the returned results. This
      * interval is usually less than one hour.
      * </p>
+     * <p>
+     * If you describe instances in the rare case where an Availability Zone is
+     * experiencing a service disruption and you specify instance IDs that are
+     * in the affected zone, or do not specify any instance IDs at all, the call
+     * fails. If you describe instances and specify only instance IDs that are
+     * in an unaffected zone, the call works normally.
+     * </p>
      * 
      * @param describeInstancesRequest
      *        Contains the parameters for DescribeInstances.
@@ -5816,6 +5899,13 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * <p>
      * Recently terminated instances might appear in the returned results. This
      * interval is usually less than one hour.
+     * </p>
+     * <p>
+     * If you describe instances in the rare case where an Availability Zone is
+     * experiencing a service disruption and you specify instance IDs that are
+     * in the affected zone, or do not specify any instance IDs at all, the call
+     * fails. If you describe instances and specify only instance IDs that are
+     * in an unaffected zone, the call works normally.
      * </p>
      * 
      * @param describeInstancesRequest
@@ -7001,8 +7091,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS snapshots, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon
-     * EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"
+     * >Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeSnapshotAttributeRequest
@@ -7021,8 +7112,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS snapshots, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon
-     * EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"
+     * >Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeSnapshotAttributeRequest
@@ -7085,11 +7177,12 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * access, it is not included in the returned results.
      * </p>
      * <p>
-     * If you specify one or more snapshot owners, only snapshots from the
-     * specified owners and for which you have access are returned. The results
-     * can include the AWS account IDs of the specified owners,
-     * <code>amazon</code> for snapshots owned by Amazon, or <code>self</code>
-     * for snapshots that you own.
+     * If you specify one or more snapshot owners using the
+     * <code>OwnerIds</code> option, only snapshots from the specified owners
+     * and for which you have access are returned. The results can include the
+     * AWS account IDs of the specified owners, <code>amazon</code> for
+     * snapshots owned by Amazon, or <code>self</code> for snapshots that you
+     * own.
      * </p>
      * <p>
      * If you specify a list of restorable users, only snapshots with create
@@ -7109,8 +7202,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS snapshots, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon
-     * EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"
+     * >Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeSnapshotsRequest
@@ -7167,11 +7261,12 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * access, it is not included in the returned results.
      * </p>
      * <p>
-     * If you specify one or more snapshot owners, only snapshots from the
-     * specified owners and for which you have access are returned. The results
-     * can include the AWS account IDs of the specified owners,
-     * <code>amazon</code> for snapshots owned by Amazon, or <code>self</code>
-     * for snapshots that you own.
+     * If you specify one or more snapshot owners using the
+     * <code>OwnerIds</code> option, only snapshots from the specified owners
+     * and for which you have access are returned. The results can include the
+     * AWS account IDs of the specified owners, <code>amazon</code> for
+     * snapshots owned by Amazon, or <code>self</code> for snapshots that you
+     * own.
      * </p>
      * <p>
      * If you specify a list of restorable users, only snapshots with create
@@ -7191,8 +7286,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS snapshots, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon
-     * EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html"
+     * >Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeSnapshotsRequest
@@ -7752,8 +7848,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS volumes, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon
-     * EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"
+     * >Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeVolumeAttributeRequest
@@ -7772,8 +7869,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS volumes, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon
-     * EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"
+     * >Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeVolumeAttributeRequest
@@ -7953,8 +8051,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS volumes, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon
-     * EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"
+     * >Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeVolumesRequest
@@ -7981,8 +8080,9 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * </p>
      * <p>
      * For more information about EBS volumes, see <a href=
-     * 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon
-     * EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html"
+     * >Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
      * </p>
      * 
      * @param describeVolumesRequest
@@ -9202,12 +9302,11 @@ public interface AmazonEC2Async extends AmazonEC2 {
 
     /**
      * <p>
-     * Retrieve a JPG-format screenshot of an instance to help with
+     * Retrieve a JPG-format screenshot of a running instance to help with
      * troubleshooting.
      * </p>
      * <p>
-     * For API calls, the returned content is base64-encoded. For command line
-     * tools, the decoding is performed for you.
+     * The returned content is Base64-encoded.
      * </p>
      * 
      * @param getConsoleScreenshotRequest
@@ -9221,12 +9320,11 @@ public interface AmazonEC2Async extends AmazonEC2 {
 
     /**
      * <p>
-     * Retrieve a JPG-format screenshot of an instance to help with
+     * Retrieve a JPG-format screenshot of a running instance to help with
      * troubleshooting.
      * </p>
      * <p>
-     * For API calls, the returned content is base64-encoded. For command line
-     * tools, the decoding is performed for you.
+     * The returned content is Base64-encoded.
      * </p>
      * 
      * @param getConsoleScreenshotRequest
@@ -9650,16 +9748,14 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * This setting applies to the IAM user who makes the request; it does not
      * apply to the entire AWS account. By default, an IAM user defaults to the
      * same settings as the root user. If you're using this action as the root
-     * user or as an IAM role that has permission to use this action, then these
-     * settings apply to the entire account, unless an IAM user explicitly
-     * overrides these settings for themselves. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html#resource-ids-access"
-     * >Controlling Access to Longer ID Settings</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>.
+     * user, then these settings apply to the entire account, unless an IAM user
+     * explicitly overrides these settings for themselves. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
      * <p>
-     * Resources created with longer IDs are visible to all IAM users,
+     * Resources created with longer IDs are visible to all IAM roles and users,
      * regardless of these settings and provided that they have permission to
      * use the relevant <code>Describe</code> command for the resource type.
      * </p>
@@ -9685,16 +9781,14 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * This setting applies to the IAM user who makes the request; it does not
      * apply to the entire AWS account. By default, an IAM user defaults to the
      * same settings as the root user. If you're using this action as the root
-     * user or as an IAM role that has permission to use this action, then these
-     * settings apply to the entire account, unless an IAM user explicitly
-     * overrides these settings for themselves. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html#resource-ids-access"
-     * >Controlling Access to Longer ID Settings</a> in the <i>Amazon Elastic
-     * Compute Cloud User Guide</i>.
+     * user, then these settings apply to the entire account, unless an IAM user
+     * explicitly overrides these settings for themselves. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
      * <p>
-     * Resources created with longer IDs are visible to all IAM users,
+     * Resources created with longer IDs are visible to all IAM roles and users,
      * regardless of these settings and provided that they have permission to
      * use the relevant <code>Describe</code> command for the resource type.
      * </p>
@@ -9713,6 +9807,72 @@ public interface AmazonEC2Async extends AmazonEC2 {
     java.util.concurrent.Future<ModifyIdFormatResult> modifyIdFormatAsync(
             ModifyIdFormatRequest modifyIdFormatRequest,
             com.amazonaws.handlers.AsyncHandler<ModifyIdFormatRequest, ModifyIdFormatResult> asyncHandler);
+
+    /**
+     * <p>
+     * Modifies the ID format of a resource for the specified IAM user, IAM
+     * role, or root user. You can specify that resources should receive longer
+     * IDs (17-character IDs) when they are created. The following resource
+     * types support longer IDs: <code>instance</code> |
+     * <code>reservation</code> | <code>snapshot</code> | <code>volume</code>.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * This setting applies to the principal specified in the request; it does
+     * not apply to the principal that makes the request.
+     * </p>
+     * <p>
+     * Resources created with longer IDs are visible to all IAM roles and users,
+     * regardless of these settings and provided that they have permission to
+     * use the relevant <code>Describe</code> command for the resource type.
+     * </p>
+     * 
+     * @param modifyIdentityIdFormatRequest
+     *        Contains the parameters of ModifyIdentityIdFormat.
+     * @return A Java Future containing the result of the ModifyIdentityIdFormat
+     *         operation returned by the service.
+     * @sample AmazonEC2Async.ModifyIdentityIdFormat
+     */
+    java.util.concurrent.Future<ModifyIdentityIdFormatResult> modifyIdentityIdFormatAsync(
+            ModifyIdentityIdFormatRequest modifyIdentityIdFormatRequest);
+
+    /**
+     * <p>
+     * Modifies the ID format of a resource for the specified IAM user, IAM
+     * role, or root user. You can specify that resources should receive longer
+     * IDs (17-character IDs) when they are created. The following resource
+     * types support longer IDs: <code>instance</code> |
+     * <code>reservation</code> | <code>snapshot</code> | <code>volume</code>.
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html"
+     * >Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * This setting applies to the principal specified in the request; it does
+     * not apply to the principal that makes the request.
+     * </p>
+     * <p>
+     * Resources created with longer IDs are visible to all IAM roles and users,
+     * regardless of these settings and provided that they have permission to
+     * use the relevant <code>Describe</code> command for the resource type.
+     * </p>
+     * 
+     * @param modifyIdentityIdFormatRequest
+     *        Contains the parameters of ModifyIdentityIdFormat.
+     * @param asyncHandler
+     *        Asynchronous callback handler for events in the lifecycle of the
+     *        request. Users can provide an implementation of the callback
+     *        methods in this interface to receive notification of successful or
+     *        unsuccessful completion of the operation.
+     * @return A Java Future containing the result of the ModifyIdentityIdFormat
+     *         operation returned by the service.
+     * @sample AmazonEC2AsyncHandler.ModifyIdentityIdFormat
+     */
+    java.util.concurrent.Future<ModifyIdentityIdFormatResult> modifyIdentityIdFormatAsync(
+            ModifyIdentityIdFormatRequest modifyIdentityIdFormatRequest,
+            com.amazonaws.handlers.AsyncHandler<ModifyIdentityIdFormatRequest, ModifyIdentityIdFormatResult> asyncHandler);
 
     /**
      * <p>
@@ -9990,17 +10150,19 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * need to both add and remove account IDs for a snapshot, you must use
      * multiple API calls.
      * </p>
+     * <note>
+     * <p>
+     * Encrypted snapshots and snapshots with AWS Marketplace product codes
+     * cannot be made public. Snapshots encrypted with your default CMK cannot
+     * be shared with other accounts.
+     * </p>
+     * </note>
      * <p>
      * For more information on modifying snapshot permissions, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html"
      * >Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * Snapshots with AWS Marketplace product codes cannot be made public.
-     * </p>
-     * </note>
      * 
      * @param modifySnapshotAttributeRequest
      *        Contains the parameters for ModifySnapshotAttribute.
@@ -10019,17 +10181,19 @@ public interface AmazonEC2Async extends AmazonEC2 {
      * need to both add and remove account IDs for a snapshot, you must use
      * multiple API calls.
      * </p>
+     * <note>
+     * <p>
+     * Encrypted snapshots and snapshots with AWS Marketplace product codes
+     * cannot be made public. Snapshots encrypted with your default CMK cannot
+     * be shared with other accounts.
+     * </p>
+     * </note>
      * <p>
      * For more information on modifying snapshot permissions, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html"
      * >Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * Snapshots with AWS Marketplace product codes cannot be made public.
-     * </p>
-     * </note>
      * 
      * @param modifySnapshotAttributeRequest
      *        Contains the parameters for ModifySnapshotAttribute.

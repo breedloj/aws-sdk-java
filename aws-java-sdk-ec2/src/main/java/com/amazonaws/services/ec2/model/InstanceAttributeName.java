@@ -33,7 +33,8 @@ public enum InstanceAttributeName {
     SourceDestCheck("sourceDestCheck"),
     GroupSet("groupSet"),
     EbsOptimized("ebsOptimized"),
-    SriovNetSupport("sriovNetSupport");
+    SriovNetSupport("sriovNetSupport"),
+    EnaSupport("enaSupport");
 
     private String value;
 
@@ -56,35 +57,15 @@ public enum InstanceAttributeName {
     public static InstanceAttributeName fromValue(String value) {
         if (value == null || "".equals(value)) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        } else if ("instanceType".equals(value)) {
-            return InstanceType;
-        } else if ("kernel".equals(value)) {
-            return Kernel;
-        } else if ("ramdisk".equals(value)) {
-            return Ramdisk;
-        } else if ("userData".equals(value)) {
-            return UserData;
-        } else if ("disableApiTermination".equals(value)) {
-            return DisableApiTermination;
-        } else if ("instanceInitiatedShutdownBehavior".equals(value)) {
-            return InstanceInitiatedShutdownBehavior;
-        } else if ("rootDeviceName".equals(value)) {
-            return RootDeviceName;
-        } else if ("blockDeviceMapping".equals(value)) {
-            return BlockDeviceMapping;
-        } else if ("productCodes".equals(value)) {
-            return ProductCodes;
-        } else if ("sourceDestCheck".equals(value)) {
-            return SourceDestCheck;
-        } else if ("groupSet".equals(value)) {
-            return GroupSet;
-        } else if ("ebsOptimized".equals(value)) {
-            return EbsOptimized;
-        } else if ("sriovNetSupport".equals(value)) {
-            return SriovNetSupport;
-        } else {
-            throw new IllegalArgumentException("Cannot create enum from "
-                    + value + " value!");
         }
+
+        for (InstanceAttributeName enumEntry : InstanceAttributeName.values()) {
+            if (enumEntry.toString().equals(value)) {
+                return enumEntry;
+            }
+        }
+
+        throw new IllegalArgumentException("Cannot create enum from " + value
+                + " value!");
     }
 }

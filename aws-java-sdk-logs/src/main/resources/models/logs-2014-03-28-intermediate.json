@@ -1,7 +1,6 @@
 {
   "metadata" : {
     "apiVersion" : "2014-03-28",
-    "exceptionUnmarshallerImpl" : null,
     "protocol" : "json",
     "checksumFormat" : null,
     "documentation" : "<fullname>Amazon CloudWatch Logs API Reference</fullname> <p>You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, Amazon CloudTrail, or other sources. You can then retrieve the associated log data from CloudWatch Logs using the Amazon CloudWatch console, the CloudWatch Logs commands in the AWS CLI, the CloudWatch Logs API, or the CloudWatch Logs SDK.</p> <p>You can use CloudWatch Logs to:</p> <ul> <li> <p><b>Monitor Logs from Amazon EC2 Instances in Real-time</b>: You can use CloudWatch Logs to monitor applications and systems using log data. For example, CloudWatch Logs can track the number of errors that occur in your application logs and send you a notification whenever the rate of errors exceeds a threshold you specify. CloudWatch Logs uses your log data for monitoring; so, no code changes are required. For example, you can monitor application logs for specific literal terms (such as \"NullReferenceException\") or count the number of occurrences of a literal term at a particular position in log data (such as \"404\" status codes in an Apache access log). When the term you are searching for is found, CloudWatch Logs reports the data to a Amazon CloudWatch metric that you specify.</p> </li> <li> <p><b>Monitor Amazon CloudTrail Logged Events</b>: You can create alarms in Amazon CloudWatch and receive notifications of particular API activity as captured by CloudTrail and use the notification to perform troubleshooting.</p> </li> <li> <p><b>Archive Log Data</b>: You can use CloudWatch Logs to store your log data in highly durable storage. You can change the log retention setting so that any log events older than this setting are automatically deleted. The CloudWatch Logs agent makes it easy to quickly send both rotated and non-rotated log data off of a host and into the log service. You can then access the raw log data when you need it.</p> </li> </ul>",
@@ -16,17 +15,17 @@
     "serviceAbbreviation" : null,
     "serviceFullName" : "Amazon CloudWatch Logs",
     "hasApiWithStreamInput" : false,
-    "jsonContentVersion" : "application/x-amz-json-1.1",
+    "contentType" : null,
     "jsonVersion" : "1.1",
     "endpointPrefix" : "logs",
     "signingName" : "logs",
-    "xmlProtocol" : false,
     "jsonProtocol" : true,
     "serviceName" : "Amazon CloudWatch Logs",
     "cborProtocol" : false,
+    "xmlProtocol" : false,
     "unmarshallerContextClassName" : "JsonUnmarshallerContext",
     "unmarshallerClassSuffix" : "JsonUnmarshaller",
-    "protocolDefaultExceptionUnmarshallerType" : "JsonErrorUnmarshaller"
+    "protocolDefaultExceptionUmarshallerImpl" : null
   },
   "operations" : {
     "CancelExportTask" : {
@@ -60,12 +59,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "CancelExportTaskResult",
       "asyncReturnType" : "CancelExportTaskResult",
       "asyncFutureType" : "java.util.concurrent.Future<CancelExportTaskResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<CancelExportTaskResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<CancelExportTaskRequest, CancelExportTaskResult>",
-      "authenticated" : true,
       "methodName" : "cancelExportTask"
     },
     "CreateExportTask" : {
@@ -105,12 +104,12 @@
         "documentation" : "<p>Returned if the specified resource already exists.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "CreateExportTaskResult",
       "asyncReturnType" : "CreateExportTaskResult",
       "asyncFutureType" : "java.util.concurrent.Future<CreateExportTaskResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<CreateExportTaskResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<CreateExportTaskRequest, CreateExportTaskResult>",
-      "authenticated" : true,
       "methodName" : "createExportTask"
     },
     "CreateLogGroup" : {
@@ -147,12 +146,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "CreateLogGroupResult",
       "asyncReturnType" : "CreateLogGroupResult",
       "asyncFutureType" : "java.util.concurrent.Future<CreateLogGroupResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<CreateLogGroupResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<CreateLogGroupRequest, CreateLogGroupResult>",
-      "authenticated" : true,
       "methodName" : "createLogGroup"
     },
     "CreateLogStream" : {
@@ -186,12 +185,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "CreateLogStreamResult",
       "asyncReturnType" : "CreateLogStreamResult",
       "asyncFutureType" : "java.util.concurrent.Future<CreateLogStreamResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<CreateLogStreamResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<CreateLogStreamRequest, CreateLogStreamResult>",
-      "authenticated" : true,
       "methodName" : "createLogStream"
     },
     "DeleteDestination" : {
@@ -225,12 +224,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteDestinationResult",
       "asyncReturnType" : "DeleteDestinationResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteDestinationResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteDestinationResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteDestinationRequest, DeleteDestinationResult>",
-      "authenticated" : true,
       "methodName" : "deleteDestination"
     },
     "DeleteLogGroup" : {
@@ -264,12 +263,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteLogGroupResult",
       "asyncReturnType" : "DeleteLogGroupResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteLogGroupResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteLogGroupResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteLogGroupRequest, DeleteLogGroupResult>",
-      "authenticated" : true,
       "methodName" : "deleteLogGroup"
     },
     "DeleteLogStream" : {
@@ -303,12 +302,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteLogStreamResult",
       "asyncReturnType" : "DeleteLogStreamResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteLogStreamResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteLogStreamResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteLogStreamRequest, DeleteLogStreamResult>",
-      "authenticated" : true,
       "methodName" : "deleteLogStream"
     },
     "DeleteMetricFilter" : {
@@ -342,12 +341,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteMetricFilterResult",
       "asyncReturnType" : "DeleteMetricFilterResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteMetricFilterResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteMetricFilterResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteMetricFilterRequest, DeleteMetricFilterResult>",
-      "authenticated" : true,
       "methodName" : "deleteMetricFilter"
     },
     "DeleteRetentionPolicy" : {
@@ -381,12 +380,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteRetentionPolicyResult",
       "asyncReturnType" : "DeleteRetentionPolicyResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteRetentionPolicyResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteRetentionPolicyResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteRetentionPolicyRequest, DeleteRetentionPolicyResult>",
-      "authenticated" : true,
       "methodName" : "deleteRetentionPolicy"
     },
     "DeleteSubscriptionFilter" : {
@@ -420,12 +419,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DeleteSubscriptionFilterResult",
       "asyncReturnType" : "DeleteSubscriptionFilterResult",
       "asyncFutureType" : "java.util.concurrent.Future<DeleteSubscriptionFilterResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DeleteSubscriptionFilterResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DeleteSubscriptionFilterRequest, DeleteSubscriptionFilterResult>",
-      "authenticated" : true,
       "methodName" : "deleteSubscriptionFilter"
     },
     "DescribeDestinations" : {
@@ -453,12 +452,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeDestinationsResult",
       "asyncReturnType" : "DescribeDestinationsResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeDestinationsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeDestinationsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeDestinationsRequest, DescribeDestinationsResult>",
-      "authenticated" : true,
       "methodName" : "describeDestinations"
     },
     "DescribeExportTasks" : {
@@ -486,12 +485,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeExportTasksResult",
       "asyncReturnType" : "DescribeExportTasksResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeExportTasksResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeExportTasksResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeExportTasksRequest, DescribeExportTasksResult>",
-      "authenticated" : true,
       "methodName" : "describeExportTasks"
     },
     "DescribeLogGroups" : {
@@ -519,12 +518,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeLogGroupsResult",
       "asyncReturnType" : "DescribeLogGroupsResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeLogGroupsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeLogGroupsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeLogGroupsRequest, DescribeLogGroupsResult>",
-      "authenticated" : true,
       "methodName" : "describeLogGroups"
     },
     "DescribeLogStreams" : {
@@ -555,12 +554,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeLogStreamsResult",
       "asyncReturnType" : "DescribeLogStreamsResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeLogStreamsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeLogStreamsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeLogStreamsRequest, DescribeLogStreamsResult>",
-      "authenticated" : true,
       "methodName" : "describeLogStreams"
     },
     "DescribeMetricFilters" : {
@@ -591,12 +590,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeMetricFiltersResult",
       "asyncReturnType" : "DescribeMetricFiltersResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeMetricFiltersResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeMetricFiltersResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeMetricFiltersRequest, DescribeMetricFiltersResult>",
-      "authenticated" : true,
       "methodName" : "describeMetricFilters"
     },
     "DescribeSubscriptionFilters" : {
@@ -627,12 +626,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "DescribeSubscriptionFiltersResult",
       "asyncReturnType" : "DescribeSubscriptionFiltersResult",
       "asyncFutureType" : "java.util.concurrent.Future<DescribeSubscriptionFiltersResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<DescribeSubscriptionFiltersResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<DescribeSubscriptionFiltersRequest, DescribeSubscriptionFiltersResult>",
-      "authenticated" : true,
       "methodName" : "describeSubscriptionFilters"
     },
     "FilterLogEvents" : {
@@ -663,12 +662,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "FilterLogEventsResult",
       "asyncReturnType" : "FilterLogEventsResult",
       "asyncFutureType" : "java.util.concurrent.Future<FilterLogEventsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<FilterLogEventsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<FilterLogEventsRequest, FilterLogEventsResult>",
-      "authenticated" : true,
       "methodName" : "filterLogEvents"
     },
     "GetLogEvents" : {
@@ -699,12 +698,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "GetLogEventsResult",
       "asyncReturnType" : "GetLogEventsResult",
       "asyncFutureType" : "java.util.concurrent.Future<GetLogEventsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<GetLogEventsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<GetLogEventsRequest, GetLogEventsResult>",
-      "authenticated" : true,
       "methodName" : "getLogEvents"
     },
     "PutDestination" : {
@@ -735,12 +734,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutDestinationResult",
       "asyncReturnType" : "PutDestinationResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutDestinationResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutDestinationResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutDestinationRequest, PutDestinationResult>",
-      "authenticated" : true,
       "methodName" : "putDestination"
     },
     "PutDestinationPolicy" : {
@@ -771,12 +770,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutDestinationPolicyResult",
       "asyncReturnType" : "PutDestinationPolicyResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutDestinationPolicyResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutDestinationPolicyResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutDestinationPolicyRequest, PutDestinationPolicyResult>",
-      "authenticated" : true,
       "methodName" : "putDestinationPolicy"
     },
     "PutLogEvents" : {
@@ -816,12 +815,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutLogEventsResult",
       "asyncReturnType" : "PutLogEventsResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutLogEventsResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutLogEventsResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutLogEventsRequest, PutLogEventsResult>",
-      "authenticated" : true,
       "methodName" : "putLogEvents"
     },
     "PutMetricFilter" : {
@@ -858,12 +857,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutMetricFilterResult",
       "asyncReturnType" : "PutMetricFilterResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutMetricFilterResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutMetricFilterResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutMetricFilterRequest, PutMetricFilterResult>",
-      "authenticated" : true,
       "methodName" : "putMetricFilter"
     },
     "PutRetentionPolicy" : {
@@ -897,12 +896,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutRetentionPolicyResult",
       "asyncReturnType" : "PutRetentionPolicyResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutRetentionPolicyResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutRetentionPolicyResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutRetentionPolicyRequest, PutRetentionPolicyResult>",
-      "authenticated" : true,
       "methodName" : "putRetentionPolicy"
     },
     "PutSubscriptionFilter" : {
@@ -939,12 +938,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "PutSubscriptionFilterResult",
       "asyncReturnType" : "PutSubscriptionFilterResult",
       "asyncFutureType" : "java.util.concurrent.Future<PutSubscriptionFilterResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<PutSubscriptionFilterResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<PutSubscriptionFilterRequest, PutSubscriptionFilterResult>",
-      "authenticated" : true,
       "methodName" : "putSubscriptionFilter"
     },
     "TestMetricFilter" : {
@@ -972,12 +971,12 @@
         "documentation" : "<p>Returned if the service cannot complete the request.</p>"
       } ],
       "hasBlobMemberAsPayload" : false,
+      "authenticated" : true,
       "syncReturnType" : "TestMetricFilterResult",
       "asyncReturnType" : "TestMetricFilterResult",
       "asyncFutureType" : "java.util.concurrent.Future<TestMetricFilterResult>",
       "asyncCallableType" : "java.util.concurrent.Callable<TestMetricFilterResult>",
       "asyncHandlerType" : "com.amazonaws.handlers.AsyncHandler<TestMetricFilterRequest, TestMetricFilterResult>",
-      "authenticated" : true,
       "methodName" : "testMetricFilter"
     }
   },
@@ -3746,11 +3745,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "SubscriptionFilter",
           "templateType" : "java.util.List<SubscriptionFilter>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<SubscriptionFilter>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<SubscriptionFilter>",
+          "simpleType" : "SubscriptionFilter",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -3992,11 +3991,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "SubscriptionFilter",
             "templateType" : "java.util.List<SubscriptionFilter>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<SubscriptionFilter>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<SubscriptionFilter>",
+            "simpleType" : "SubscriptionFilter",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -4124,11 +4123,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "OutputLogEvent",
           "templateType" : "java.util.List<OutputLogEvent>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<OutputLogEvent>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<OutputLogEvent>",
+          "simpleType" : "OutputLogEvent",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -4369,11 +4368,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "OutputLogEvent",
             "templateType" : "java.util.List<OutputLogEvent>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<OutputLogEvent>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<OutputLogEvent>",
+            "simpleType" : "OutputLogEvent",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -4984,11 +4983,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "LogStream",
           "templateType" : "java.util.List<LogStream>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogStream>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogStream>",
+          "simpleType" : "LogStream",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -5230,11 +5229,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "LogStream",
             "templateType" : "java.util.List<LogStream>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogStream>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogStream>",
+            "simpleType" : "LogStream",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -7904,11 +7903,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : true,
-          "map" : false,
-          "simpleType" : "String",
           "templateType" : "java.util.List<String>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>",
+          "simpleType" : "String",
+          "simple" : true,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -8414,11 +8413,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : true,
-            "map" : false,
-            "simpleType" : "String",
             "templateType" : "java.util.List<String>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>",
+            "simpleType" : "String",
+            "simple" : true,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -9647,11 +9646,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "LogGroup",
           "templateType" : "java.util.List<LogGroup>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogGroup>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogGroup>",
+          "simpleType" : "LogGroup",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -9893,11 +9892,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "LogGroup",
             "templateType" : "java.util.List<LogGroup>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogGroup>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<LogGroup>",
+            "simpleType" : "LogGroup",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -13019,12 +13018,12 @@
             "fluentSetterDocumentation" : "/**\n@param value \n@return Returns a reference to this object so that method calls can be chained together.*/",
             "varargSetterDocumentation" : "/**\n@param value \n@return Returns a reference to this object so that method calls can be chained together.*/"
           },
+          "templateType" : "java.util.Map<String,String>",
+          "templateImplType" : "com.amazonaws.internal.SdkInternalMap<String,String>",
           "keySimple" : true,
           "valueSimple" : true,
           "valueList" : false,
-          "entryType" : "Map.Entry<String, String>",
-          "templateType" : "java.util.Map<String,String>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalMap<String,String>"
+          "entryType" : "Map.Entry<String, String>"
         },
         "enumType" : null,
         "xmlNameSpaceUri" : null,
@@ -13267,12 +13266,12 @@
               "fluentSetterDocumentation" : "/**\n@param value \n@return Returns a reference to this object so that method calls can be chained together.*/",
               "varargSetterDocumentation" : "/**\n@param value \n@return Returns a reference to this object so that method calls can be chained together.*/"
             },
+            "templateType" : "java.util.Map<String,String>",
+            "templateImplType" : "com.amazonaws.internal.SdkInternalMap<String,String>",
             "keySimple" : true,
             "valueSimple" : true,
             "valueList" : false,
-            "entryType" : "Map.Entry<String, String>",
-            "templateType" : "java.util.Map<String,String>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalMap<String,String>"
+            "entryType" : "Map.Entry<String, String>"
           },
           "enumType" : null,
           "xmlNameSpaceUri" : null,
@@ -14140,11 +14139,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "MetricFilter",
           "templateType" : "java.util.List<MetricFilter>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilter>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilter>",
+          "simpleType" : "MetricFilter",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -14386,11 +14385,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "MetricFilter",
             "templateType" : "java.util.List<MetricFilter>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilter>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilter>",
+            "simpleType" : "MetricFilter",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -14768,11 +14767,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "MetricFilterMatchRecord",
           "templateType" : "java.util.List<MetricFilterMatchRecord>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilterMatchRecord>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilterMatchRecord>",
+          "simpleType" : "MetricFilterMatchRecord",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -14909,11 +14908,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "MetricFilterMatchRecord",
             "templateType" : "java.util.List<MetricFilterMatchRecord>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilterMatchRecord>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricFilterMatchRecord>",
+            "simpleType" : "MetricFilterMatchRecord",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -15076,11 +15075,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "Destination",
           "templateType" : "java.util.List<Destination>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<Destination>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<Destination>",
+          "simpleType" : "Destination",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -15322,11 +15321,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "Destination",
             "templateType" : "java.util.List<Destination>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<Destination>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<Destination>",
+            "simpleType" : "Destination",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -15925,11 +15924,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "ExportTask",
           "templateType" : "java.util.List<ExportTask>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<ExportTask>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<ExportTask>",
+          "simpleType" : "ExportTask",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -16171,11 +16170,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "ExportTask",
             "templateType" : "java.util.List<ExportTask>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<ExportTask>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<ExportTask>",
+            "simpleType" : "ExportTask",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -16407,11 +16406,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "InputLogEvent",
           "templateType" : "java.util.List<InputLogEvent>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<InputLogEvent>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<InputLogEvent>",
+          "simpleType" : "InputLogEvent",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -16763,11 +16762,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "InputLogEvent",
             "templateType" : "java.util.List<InputLogEvent>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<InputLogEvent>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<InputLogEvent>",
+            "simpleType" : "InputLogEvent",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -16999,11 +16998,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "MetricTransformation",
           "templateType" : "java.util.List<MetricTransformation>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>",
+          "simpleType" : "MetricTransformation",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -17298,11 +17297,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "MetricTransformation",
             "templateType" : "java.util.List<MetricTransformation>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>",
+            "simpleType" : "MetricTransformation",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -19921,11 +19920,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "FilteredLogEvent",
           "templateType" : "java.util.List<FilteredLogEvent>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<FilteredLogEvent>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<FilteredLogEvent>",
+          "simpleType" : "FilteredLogEvent",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -20039,11 +20038,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "SearchedLogStream",
           "templateType" : "java.util.List<SearchedLogStream>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<SearchedLogStream>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<SearchedLogStream>",
+          "simpleType" : "SearchedLogStream",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -20285,11 +20284,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "SearchedLogStream",
             "templateType" : "java.util.List<SearchedLogStream>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<SearchedLogStream>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<SearchedLogStream>",
+            "simpleType" : "SearchedLogStream",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -20404,11 +20403,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "FilteredLogEvent",
             "templateType" : "java.util.List<FilteredLogEvent>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<FilteredLogEvent>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<FilteredLogEvent>",
+            "simpleType" : "FilteredLogEvent",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -20692,11 +20691,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : false,
-          "map" : false,
-          "simpleType" : "MetricTransformation",
           "templateType" : "java.util.List<MetricTransformation>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>",
+          "simpleType" : "MetricTransformation",
+          "simple" : false,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -20890,11 +20889,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : false,
-            "map" : false,
-            "simpleType" : "MetricTransformation",
             "templateType" : "java.util.List<MetricTransformation>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<MetricTransformation>",
+            "simpleType" : "MetricTransformation",
+            "simple" : false,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -22592,11 +22591,11 @@
           "memberAdditionalMarshallingPath" : null,
           "memberAdditionalUnmarshallingPath" : null,
           "sendEmptyQueryString" : false,
-          "simple" : true,
-          "map" : false,
-          "simpleType" : "String",
           "templateType" : "java.util.List<String>",
-          "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>"
+          "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>",
+          "simpleType" : "String",
+          "simple" : true,
+          "map" : false
         },
         "mapModel" : null,
         "enumType" : null,
@@ -22737,11 +22736,11 @@
             "memberAdditionalMarshallingPath" : null,
             "memberAdditionalUnmarshallingPath" : null,
             "sendEmptyQueryString" : false,
-            "simple" : true,
-            "map" : false,
-            "simpleType" : "String",
             "templateType" : "java.util.List<String>",
-            "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>"
+            "templateImplType" : "com.amazonaws.internal.SdkInternalList<String>",
+            "simpleType" : "String",
+            "simple" : true,
+            "map" : false
           },
           "mapModel" : null,
           "enumType" : null,
@@ -23835,5 +23834,6 @@
     "version" : "1.0",
     "operationExamples" : { }
   },
-  "clientConfigFactory" : "ClientConfigurationFactory"
+  "clientConfigFactory" : "ClientConfigurationFactory",
+  "exceptionUnmarshallerImpl" : null
 }

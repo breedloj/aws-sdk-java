@@ -68,9 +68,6 @@ public class AWSElasticsearchClient extends AmazonWebServiceClient implements
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "es";
 
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "es";
-
     /**
      * Client configuration factory providing ClientConfigurations tailored to
      * this client
@@ -81,6 +78,7 @@ public class AWSElasticsearchClient extends AmazonWebServiceClient implements
             new JsonClientMetadata()
                     .withProtocolVersion("1.1")
                     .withSupportsCbor(false)
+                    .withContentTypeOverride("")
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
                                     .withErrorCode(
@@ -281,7 +279,7 @@ public class AWSElasticsearchClient extends AmazonWebServiceClient implements
 
     private void init() {
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         // calling this.setEndPoint(...) will also modify the signer accordingly
         setEndpoint("https://es.us-east-1.amazonaws.com");
         HandlerChainFactory chainFactory = new HandlerChainFactory();

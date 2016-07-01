@@ -48,7 +48,7 @@ public class ModifyInstanceAttributeRequestMarshaller
         Request<ModifyInstanceAttributeRequest> request = new DefaultRequest<ModifyInstanceAttributeRequest>(
                 modifyInstanceAttributeRequest, "AmazonEC2");
         request.addParameter("Action", "ModifyInstanceAttribute");
-        request.addParameter("Version", "2015-10-01");
+        request.addParameter("Version", "2016-04-01");
         request.setHttpMethod(HttpMethodName.POST);
 
         if (modifyInstanceAttributeRequest.getInstanceId() != null) {
@@ -181,6 +181,12 @@ public class ModifyInstanceAttributeRequestMarshaller
             request.addParameter("SriovNetSupport.Value", StringUtils
                     .fromString(modifyInstanceAttributeRequest
                             .getSriovNetSupport()));
+        }
+
+        if (modifyInstanceAttributeRequest.getEnaSupport() != null) {
+            request.addParameter("EnaSupport.Value",
+                    StringUtils.fromBoolean(modifyInstanceAttributeRequest
+                            .getEnaSupport()));
         }
 
         return request;

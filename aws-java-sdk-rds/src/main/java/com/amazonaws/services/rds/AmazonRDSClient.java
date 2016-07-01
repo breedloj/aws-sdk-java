@@ -45,6 +45,8 @@ import com.amazonaws.services.rds.model.transform.*;
  * <p>
  * <fullname>Amazon Relational Database Service</fullname>
  * <p>
+ * </p>
+ * <p>
  * Amazon Relational Database Service (Amazon RDS) is a web service that makes
  * it easier to set up, operate, and scale a relational database in the cloud.
  * It provides cost-efficient, resizeable capacity for an industry-standard
@@ -136,9 +138,6 @@ public class AmazonRDSClient extends AmazonWebServiceClient implements
 
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "rds";
-
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "rds";
 
     /**
      * Client configuration factory providing ClientConfigurations tailored to
@@ -442,7 +441,7 @@ public class AmazonRDSClient extends AmazonWebServiceClient implements
         exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
 
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("rds.amazonaws.com");
         HandlerChainFactory chainFactory = new HandlerChainFactory();
@@ -1884,19 +1883,43 @@ public class AmazonRDSClient extends AmazonWebServiceClient implements
      * The DeleteDBInstance action deletes a previously provisioned DB instance.
      * When you delete a DB instance, all automated backups for that instance
      * are deleted and cannot be recovered. Manual DB snapshots of the DB
-     * instance to be deleted are not deleted.
+     * instance to be deleted by <code>DeleteDBInstance</code> are not deleted.
      * </p>
      * <p>
-     * If a final DB snapshot is requested the status of the RDS instance will
-     * be <code>deleting</code> until the DB snapshot is created. The API action
-     * <code>DescribeDBInstance</code> is used to monitor the status of this
-     * operation. The action cannot be canceled or reverted once submitted.
+     * If you request a final DB snapshot the status of the Amazon RDS DB
+     * instance is <code>deleting</code> until the DB snapshot is created. The
+     * API action <code>DescribeDBInstance</code> is used to monitor the status
+     * of this operation. The action cannot be canceled or reverted once
+     * submitted.
      * </p>
      * <p>
      * Note that when a DB instance is in a failure state and has a status of
      * <code>failed</code>, <code>incompatible-restore</code>, or
-     * <code>incompatible-network</code>, it can only be deleted when the
+     * <code>incompatible-network</code>, you can only delete it when the
      * <code>SkipFinalSnapshot</code> parameter is set to <code>true</code>.
+     * </p>
+     * <p>
+     * If the specified DB instance is part of an Amazon Aurora DB cluster, you
+     * cannot delete the DB instance if the following are true:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The DB cluster is a Read Replica of another Amazon Aurora DB cluster.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The DB instance is the only instance in the DB cluster.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To delete a DB instance in this case, first call the
+     * <a>PromoteReadReplicaDBCluster</a> API action to promote the DB cluster
+     * so it's no longer a Read Replica. After the promotion completes, then
+     * call the <code>DeleteDBInstance</code> API action to delete the final
+     * instance in the DB cluster.
      * </p>
      * 
      * @param deleteDBInstanceRequest
@@ -4557,6 +4580,55 @@ public class AmazonRDSClient extends AmazonWebServiceClient implements
 
             StaxResponseHandler<DBInstance> responseHandler = new StaxResponseHandler<DBInstance>(
                     new DBInstanceStaxUnmarshaller());
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+
+        } finally {
+
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Promotes a Read Replica DB cluster to a standalone DB cluster.
+     * </p>
+     * 
+     * @param promoteReadReplicaDBClusterRequest
+     * @return Result of the PromoteReadReplicaDBCluster operation returned by
+     *         the service.
+     * @throws DBClusterNotFoundException
+     *         <i>DBClusterIdentifier</i> does not refer to an existing DB
+     *         cluster.
+     * @throws InvalidDBClusterStateException
+     *         The DB cluster is not in a valid state.
+     * @sample AmazonRDS.PromoteReadReplicaDBCluster
+     */
+    @Override
+    public DBCluster promoteReadReplicaDBCluster(
+            PromoteReadReplicaDBClusterRequest promoteReadReplicaDBClusterRequest) {
+        ExecutionContext executionContext = createExecutionContext(promoteReadReplicaDBClusterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext
+                .getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PromoteReadReplicaDBClusterRequest> request = null;
+        Response<DBCluster> response = null;
+
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PromoteReadReplicaDBClusterRequestMarshaller()
+                        .marshall(super
+                                .beforeMarshalling(promoteReadReplicaDBClusterRequest));
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DBCluster> responseHandler = new StaxResponseHandler<DBCluster>(
+                    new DBClusterStaxUnmarshaller());
             response = invoke(request, responseHandler, executionContext);
 
             return response.getAwsResponse();

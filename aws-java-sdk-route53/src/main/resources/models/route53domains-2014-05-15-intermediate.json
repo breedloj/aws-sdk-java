@@ -1,7 +1,6 @@
 {
   "metadata" : {
     "apiVersion" : "2014-05-15",
-    "exceptionUnmarshallerImpl" : null,
     "protocol" : "json",
     "checksumFormat" : null,
     "documentation" : null,
@@ -16,7 +15,7 @@
     "serviceAbbreviation" : null,
     "serviceFullName" : "Amazon Route 53 Domains",
     "hasApiWithStreamInput" : false,
-    "jsonContentVersion" : "application/x-amz-json-1.1",
+    "contentType" : null,
     "jsonVersion" : "1.1",
     "endpointPrefix" : "route53domains",
     "signingName" : "route53domains",
@@ -26,7 +25,7 @@
     "cborProtocol" : false,
     "unmarshallerContextClassName" : "JsonUnmarshallerContext",
     "unmarshallerClassSuffix" : "JsonUnmarshaller",
-    "protocolDefaultExceptionUnmarshallerType" : "JsonErrorUnmarshaller"
+    "protocolDefaultExceptionUmarshallerImpl" : null
   },
   "operations" : {
     "CheckDomainAvailability" : {
@@ -18600,5 +18599,6 @@
     "version" : "1.0",
     "operationExamples" : { }
   },
-  "clientConfigFactory" : "ClientConfigurationFactory"
+  "clientConfigFactory" : "ClientConfigurationFactory",
+  "exceptionUnmarshallerImpl" : null
 }

@@ -83,9 +83,6 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements
     /** Default signing name for the service. */
     private static final String DEFAULT_SIGNING_NAME = "cognito-sync";
 
-    /** The region metadata service name for computing region endpoints. */
-    private static final String DEFAULT_ENDPOINT_PREFIX = "cognito-sync";
-
     /**
      * Client configuration factory providing ClientConfigurations tailored to
      * this client
@@ -96,72 +93,71 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements
             new JsonClientMetadata()
                     .withProtocolVersion("1.1")
                     .withSupportsCbor(false)
+                    .withContentTypeOverride("")
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode(
-                                            "InvalidConfigurationException")
+                                    .withErrorCode("InvalidConfiguration")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.InvalidConfigurationException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("NotAuthorizedException")
+                                    .withErrorCode("NotAuthorizedError")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.NotAuthorizedException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("LimitExceededException")
+                                    .withErrorCode("LimitExceeded")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.LimitExceededException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("ResourceConflictException")
+                                    .withErrorCode("ResourceConflict")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.ResourceConflictException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("AlreadyStreamedException")
+                                    .withErrorCode("AlreadyStreamed")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.AlreadyStreamedException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("InvalidParameterException")
+                                    .withErrorCode("InvalidParameter")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.InvalidParameterException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode(
-                                            "ConcurrentModificationException")
+                                    .withErrorCode("ConcurrentModification")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.ConcurrentModificationException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
                                     .withErrorCode(
-                                            "InvalidLambdaFunctionOutputException")
+                                            "InvalidLambdaFunctionOutput")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.InvalidLambdaFunctionOutputException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("ResourceNotFoundException")
+                                    .withErrorCode("ResourceNotFound")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.ResourceNotFoundException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("DuplicateRequestException")
+                                    .withErrorCode("DuplicateRequest")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.DuplicateRequestException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("LambdaThrottledException")
+                                    .withErrorCode("LambdaThrottled")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.LambdaThrottledException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("TooManyRequestsException")
+                                    .withErrorCode("TooManyRequests")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.TooManyRequestsException.class))
                     .addErrorMetadata(
                             new JsonErrorShapeMetadata()
-                                    .withErrorCode("InternalErrorException")
+                                    .withErrorCode("InternalError")
                                     .withModeledClass(
                                             com.amazonaws.services.cognitosync.model.InternalErrorException.class)));
 
@@ -323,7 +319,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements
 
     private void init() {
         setServiceNameIntern(DEFAULT_SIGNING_NAME);
-        setEndpointPrefix(DEFAULT_ENDPOINT_PREFIX);
+        setEndpointPrefix(ENDPOINT_PREFIX);
         // calling this.setEndPoint(...) will also modify the signer accordingly
         setEndpoint("https://cognito-sync.us-east-1.amazonaws.com/");
         HandlerChainFactory chainFactory = new HandlerChainFactory();

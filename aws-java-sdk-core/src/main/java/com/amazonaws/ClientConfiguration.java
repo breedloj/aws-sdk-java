@@ -25,7 +25,7 @@ import java.security.SecureRandom;
 
 /**
  * Client configuration options such as proxy settings, user agent string, max retry attempts, etc.
- * 
+ *
  * @see PredefinedClientConfigurations
  */
 @NotThreadSafe
@@ -98,7 +98,12 @@ public class ClientConfiguration {
     /**
      * The default on whether to throttle retries.
      */
-    public static final boolean DEFAULT_THROTTLE_RETRIES = false;
+    public static final boolean DEFAULT_THROTTLE_RETRIES = true;
+
+    /**
+     * The default on whether to cache response metadata.
+     */
+    public static final boolean DEFAULT_CACHE_RESPONSE_METADATA = true;
 
     /**
      * The default response metadata cache size.
@@ -145,6 +150,9 @@ public class ClientConfiguration {
 
     /** Optional Windows workstation name for configuring NTLM proxy support. */
     private String proxyWorkstation = null;
+
+    /** Optional specifies the hosts that should be accessed without going through the proxy. */
+    private String nonProxyHosts = null;
 
     /**
      * Whether to pre-emptively authenticate against a proxy server using basic authentication
@@ -235,7 +243,20 @@ public class ClientConfiguration {
     private boolean tcpKeepAlive = DEFAULT_TCP_KEEP_ALIVE;
 
     /**
-     * Size of the response metadata cache.
+     * Whether or not to cache response metadata.
+     * <p>
+     * Response metadata is typically used for troubleshooting issues with AWS support staff when
+     * services aren't acting as expected.
+     * </p>
+     * <p>
+     * While this feature is useful for debugging it adds overhead and disabling it may
+     * be desired in high throughput applications.
+     * </p>
+     */
+    private boolean cacheResponseMetadata = DEFAULT_CACHE_RESPONSE_METADATA;
+
+    /**
+     * Size of the response metadata cache, if it is enabled.
      * <p>
      * Response metadata is typically used for troubleshooting issues with AWS support staff when
      * services aren't acting as expected.
@@ -288,6 +309,7 @@ public class ClientConfiguration {
         this.proxyPort = other.proxyPort;
         this.proxyUsername = other.proxyUsername;
         this.proxyWorkstation = other.proxyWorkstation;
+        this.nonProxyHosts = other.nonProxyHosts;
         this.preemptiveBasicProxyAuth = other.preemptiveBasicProxyAuth;
         this.socketTimeout = other.socketTimeout;
         this.requestTimeout = other.requestTimeout;
@@ -302,6 +324,7 @@ public class ClientConfiguration {
         this.dnsResolver = other.dnsResolver;
         this.useExpectContinue = other.useExpectContinue;
         this.apacheHttpClientConfig = new ApacheHttpClientConfig(other.apacheHttpClientConfig);
+        this.cacheResponseMetadata = other.cacheResponseMetadata;
     }
 
     /**
@@ -730,6 +753,51 @@ public class ClientConfiguration {
     }
 
     /**
+     * Returns the Java system property for nonProxyHosts. We still honor this property even
+     * {@link this.getProtocol()} is https, see http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html.
+     */
+    private String getNonProxyHostsProperty() {
+        return getSystemProperty("http.nonProxyHosts");
+    }
+
+    /**
+     * Returns the optional hosts the client will access without going
+     * through the proxy. Returns either the nonProxyHosts set on this
+     * object, or if not provided, checks the value of the Java system property
+     * for nonProxyHosts according to {@link this.getProtocol()}: i.e. if
+     * protocol is https, returns null, otherwise returns value of http.nonProxyHosts.
+     *
+     * @return The hosts the client will connect through bypassing the proxy.
+     */
+    public String getNonProxyHosts() {
+        return nonProxyHosts != null ? nonProxyHosts : getNonProxyHostsProperty();
+    }
+
+    /**
+     * Set the optional hosts the client will access without going
+     * through the proxy.
+     *
+     * @param nonProxyHosts
+     *            The hosts the client will access without going through the proxy.
+     */
+    public void setNonProxyHosts(String nonProxyHosts) {
+        this.nonProxyHosts = nonProxyHosts;
+    }
+
+    /**
+     * Set the optional hosts the client will access without going
+     * through the proxy.
+     *
+     * @param nonProxyHosts
+     *            The hosts the client will access without going through the proxy.
+     * @return The updated ClientConfiguration object.
+     */
+    public ClientConfiguration withNonProxyHosts(String nonProxyHosts) {
+        setNonProxyHosts(nonProxyHosts);
+        return this;
+    }
+
+    /**
      * Returns the retry policy upon failed requests.
      *
      * @return The retry policy upon failed requests.
@@ -995,7 +1063,7 @@ public class ClientConfiguration {
      * <p>
      * <b>Note:</b> This feature is not compatible with Java 1.6.
      * </p>
-     * 
+     *
      * @return The amount of time (in milliseconds) to allow the client to complete the execution of
      *         an API call.
      * @see {@link ClientConfiguration#setRequestTimeout(int)} to enforce a timeout per HTTP request
@@ -1573,7 +1641,7 @@ public class ClientConfiguration {
 
     /**
      * Sets whether or not to enable TCP KeepAlive support at the socket level.
-     * 
+     *
      * @return The updated ClientConfiguration object.
      */
     public ClientConfiguration withTcpKeepAlive(final boolean use) {
@@ -1602,11 +1670,62 @@ public class ClientConfiguration {
 
     /**
      * Sets the DNS Resolver that should be used to for resolving AWS IP addresses.
-     * 
+     *
      * @return The updated ClientConfiguration object.
      */
     public ClientConfiguration withDnsResolver(final DnsResolver resolver) {
         setDnsResolver(resolver);
+        return this;
+    }
+
+    /**
+     * Returns whether or not to cache response metadata.
+     * <p>
+     * Response metadata is typically used for troubleshooting issues with AWS support staff when
+     * services aren't acting as expected.
+     * </p>
+     * <p>
+     * While this feature is useful for debugging it adds overhead and disabling it may
+     * be desired in high throughput applications.
+     * </p>
+     *
+     * @return true if response metadata will be cached
+     */
+    public boolean getCacheResponseMetadata() { return cacheResponseMetadata; }
+
+    /**
+     * Sets whether or not to cache response metadata.
+     * <p>
+     * Response metadata is typically used for troubleshooting issues with AWS support staff when
+     * services aren't acting as expected.
+     * </p>
+     * <p>
+     * While this feature is useful for debugging it adds overhead and disabling it may
+     * be desired in high throughput applications.
+     * </p>
+     *
+     * @param shouldCache true if response metadata should be cached
+     */
+    public void setCacheResponseMetadata(boolean shouldCache) {
+        this.cacheResponseMetadata = shouldCache;
+    }
+
+    /**
+     * Sets whether or not to cache response metadata.
+     * <p>
+     * Response metadata is typically used for troubleshooting issues with AWS support staff when
+     * services aren't acting as expected.
+     * </p>
+     * <p>
+     * While this feature is useful for debugging it adds overhead and disabling it may
+     * be desired in high throughput applications.
+     * </p>
+     *
+     * @param shouldCache true if response metadata should be cached
+     * @return The updated ClientConfiguration object.
+     */
+    public ClientConfiguration withCacheResponseMetadata(final boolean shouldCache) {
+        setCacheResponseMetadata(shouldCache);
         return this;
     }
 
@@ -1620,7 +1739,7 @@ public class ClientConfiguration {
     /**
      * Sets the response metadata cache size. By default, it is set to
      * {@value #DEFAULT_RESPONSE_METADATA_CACHE_SIZE}.
-     * 
+     *
      * @param responseMetadataCacheSize
      *            maximum cache size.
      */
@@ -1631,7 +1750,7 @@ public class ClientConfiguration {
     /**
      * Sets the response metadata cache size. By default, it is set to
      * {@value #DEFAULT_RESPONSE_METADATA_CACHE_SIZE}.
-     * 
+     *
      * @param responseMetadataCacheSize
      *            maximum cache size.
      * @return The updated ClientConfiguration object.

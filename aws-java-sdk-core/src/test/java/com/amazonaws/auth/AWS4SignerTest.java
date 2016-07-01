@@ -18,8 +18,12 @@
  */
 package com.amazonaws.auth;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import com.amazonaws.DefaultRequest;
+import com.amazonaws.Request;
+import com.amazonaws.auth.internal.AWS4SignerUtils;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.net.URI;
@@ -30,12 +34,8 @@ import java.util.GregorianCalendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.amazonaws.DefaultRequest;
-import com.amazonaws.Request;
-import com.amazonaws.auth.internal.AWS4SignerUtils;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Unit tests for the
@@ -117,6 +117,32 @@ public class AWS4SignerTest {
         signer.sign(request, credentials);
         assertEquals(EXPECTED_AUTHORIZATION_HEADER_WITH_SHA256_HEADER,
                 request.getHeaders().get("Authorization"));
+    }
+
+    @Test
+    public void testPresigning() throws Exception {
+        final String EXPECTED_AMZ_SIGNATURE = "bf7ae1c2f266d347e290a2aee7b126d38b8a695149d003b9fab2ed1eb6d6ebda";
+        final String EXPECTED_AMZ_CREDENTIALS = "access/19810216/us-east-1/demo/aws4_request";
+        final String EXPECTED_AMZ_HEADER = "19810216T063000Z";
+        final String EXPECTED_AMZ_EXPIRES = "604800";
+
+        AWSCredentials credentials = new BasicAWSCredentials("access", "secret");
+        // Test request without 'x-amz-sha256' header
+        Request<?> request = generateBasicRequest();
+
+        Calendar c = new GregorianCalendar();
+        c.set(1981, 1, 16, 6, 30, 0);
+        c.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        signer.setOverrideDate(c.getTime());
+        signer.setServiceName("demo");
+
+        signer.presignRequest(request, credentials, null);
+        assertEquals(EXPECTED_AMZ_SIGNATURE, request.getParameters().get("X-Amz-Signature").get(0));
+        assertEquals(EXPECTED_AMZ_CREDENTIALS,
+                     request.getParameters().get("X-Amz-Credential").get(0));
+        assertEquals(EXPECTED_AMZ_HEADER, request.getParameters().get("X-Amz-Date").get(0));
+        assertEquals(EXPECTED_AMZ_EXPIRES, request.getParameters().get("X-Amz-Expires").get(0));
     }
 
     /**

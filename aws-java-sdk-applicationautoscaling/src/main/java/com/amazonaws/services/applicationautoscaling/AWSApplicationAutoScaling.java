@@ -57,8 +57,37 @@ import com.amazonaws.services.applicationautoscaling.model.*;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * Application Auto Scaling is available in the following regions:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>us-east-1</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>us-west-2</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>eu-west-1</code>
+ * </p>
+ * </li>
+ * </ul>
  */
 public interface AWSApplicationAutoScaling {
+
+    /**
+     * The region metadata service name for computing region endpoints. You can
+     * use this value to retrieve metadata (such as supported regions) of the
+     * service.
+     *
+     * @see RegionUtils#getRegionsForService(String)
+     */
+    String ENDPOINT_PREFIX = "autoscaling";
 
     /**
      * Overrides the default endpoint for this client

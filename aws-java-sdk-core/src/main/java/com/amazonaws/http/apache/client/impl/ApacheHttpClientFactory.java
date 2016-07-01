@@ -14,8 +14,16 @@
  */
 package com.amazonaws.http.apache.client.impl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.conn.ConnectionKeepAliveStrategy;
+import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+
 import com.amazonaws.http.AmazonHttpClient;
 import com.amazonaws.http.IdleConnectionReaper;
+import com.amazonaws.http.apache.SdkProxyRoutePlanner;
 import com.amazonaws.http.apache.utils.ApacheUtils;
 import com.amazonaws.http.client.ConnectionManagerFactory;
 import com.amazonaws.http.client.HttpClientFactory;
@@ -23,13 +31,6 @@ import com.amazonaws.http.conn.ClientConnectionManagerFactory;
 import com.amazonaws.http.conn.SdkConnectionKeepAliveStrategy;
 import com.amazonaws.http.protocol.SdkHttpRequestExecutor;
 import com.amazonaws.http.settings.HttpClientSettings;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.http.HttpHost;
-import org.apache.http.conn.ConnectionKeepAliveStrategy;
-import org.apache.http.conn.HttpClientConnectionManager;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 
 /**
  * Factory class that builds the apache http client from the settings.
@@ -43,13 +44,16 @@ public class ApacheHttpClientFactory implements HttpClientFactory<ConnectionMana
     @Override
     public ConnectionManagerAwareHttpClient create(HttpClientSettings settings) {
         final HttpClientBuilder builder = HttpClients.custom();
-        final HttpClientConnectionManager cm = ClientConnectionManagerFactory.wrap(cmFactory.create(settings));
+        // Note that it is important we register the original connection manager with the
+        // IdleConnectionReaper as it's required for the successful deregistration of managers
+        // from the reaper. See https://github.com/aws/aws-sdk-java/issues/722.
+        final HttpClientConnectionManager cm = cmFactory.create(settings);
 
         builder.setRequestExecutor(new SdkHttpRequestExecutor())
                 .setKeepAliveStrategy(buildKeepAliveStrategy(settings))
                 .disableRedirectHandling()
                 .disableAutomaticRetries()
-                .setConnectionManager(cm);
+                .setConnectionManager(ClientConnectionManagerFactory.wrap(cm));
 
         // By default http client enables Gzip compression. So we disable it
         // here.
@@ -78,7 +82,9 @@ public class ApacheHttpClientFactory implements HttpClientFactory<ConnectionMana
 
             LOG.info("Configuring Proxy. Proxy Host: " + settings.getProxyHost() + " " +
                     "Proxy Port: " + settings.getProxyPort());
-            builder.setProxy(new HttpHost(settings.getProxyHost(), settings.getProxyPort()));
+
+            builder.setRoutePlanner(new SdkProxyRoutePlanner(
+                    settings.getProxyHost(), settings.getProxyPort(), settings.getNonProxyHosts()));
 
             if (isAuthenticatedProxy(settings)) {
                 builder.setDefaultCredentialsProvider(ApacheUtils

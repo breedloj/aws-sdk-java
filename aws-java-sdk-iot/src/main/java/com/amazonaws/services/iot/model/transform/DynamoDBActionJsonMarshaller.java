@@ -55,6 +55,10 @@ public class DynamoDBActionJsonMarshaller {
                 jsonGenerator.writeFieldName("roleArn").writeValue(
                         dynamoDBAction.getRoleArn());
             }
+            if (dynamoDBAction.getOperation() != null) {
+                jsonGenerator.writeFieldName("operation").writeValue(
+                        dynamoDBAction.getOperation());
+            }
             if (dynamoDBAction.getHashKeyField() != null) {
                 jsonGenerator.writeFieldName("hashKeyField").writeValue(
                         dynamoDBAction.getHashKeyField());
@@ -63,6 +67,10 @@ public class DynamoDBActionJsonMarshaller {
                 jsonGenerator.writeFieldName("hashKeyValue").writeValue(
                         dynamoDBAction.getHashKeyValue());
             }
+            if (dynamoDBAction.getHashKeyType() != null) {
+                jsonGenerator.writeFieldName("hashKeyType").writeValue(
+                        dynamoDBAction.getHashKeyType());
+            }
             if (dynamoDBAction.getRangeKeyField() != null) {
                 jsonGenerator.writeFieldName("rangeKeyField").writeValue(
                         dynamoDBAction.getRangeKeyField());
@@ -70,6 +78,10 @@ public class DynamoDBActionJsonMarshaller {
             if (dynamoDBAction.getRangeKeyValue() != null) {
                 jsonGenerator.writeFieldName("rangeKeyValue").writeValue(
                         dynamoDBAction.getRangeKeyValue());
+            }
+            if (dynamoDBAction.getRangeKeyType() != null) {
+                jsonGenerator.writeFieldName("rangeKeyType").writeValue(
+                        dynamoDBAction.getRangeKeyType());
             }
             if (dynamoDBAction.getPayloadField() != null) {
                 jsonGenerator.writeFieldName("payloadField").writeValue(
